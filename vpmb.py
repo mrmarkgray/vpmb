@@ -160,7 +160,6 @@ class DiveState(object):
         self.Run_Time_Start_of_Ascent = 0.0
         self.Altitude_of_Dive = 0.0
         self.Deco_Phase_Volume_Time = 0.0
-        self.Surface_Interval_Time = 0.0
         self.Regenerated_Radius_He = [0.0] * COMPARTMENTS
         self.Regenerated_Radius_N2 = [0.0] * COMPARTMENTS
 
@@ -2131,10 +2130,10 @@ class DiveState(object):
             # REPETITIVE LOOP AT LINE 30.
 
             elif repetitive_dive_flag == 1:
-                self.Surface_Interval_Time = dive["surface_interval_time_minutes"]
+                surface_interval_time = dive["surface_interval_time_minutes"]
 
-                self.gas_loadings_surface_interval(self.Surface_Interval_Time)
-                self.vpm_repetitive_algorithm(self.Surface_Interval_Time)
+                self.gas_loadings_surface_interval(surface_interval_time)
+                self.vpm_repetitive_algorithm(surface_interval_time)
 
                 for i in range(COMPARTMENTS):
                     self.Max_Crushing_Pressure_He[i] = 0.0
